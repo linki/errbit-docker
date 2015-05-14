@@ -1,0 +1,5 @@
+# some gems that ease the way of building and running this image
+#
+
+# precompile assets without digests, too. b/c some are referenced like that
+gem 'non-stupid-digest-assets', '~> 1.0.4'

@@ -1,0 +1,48 @@
+# a fig.yml that shows how each service can be configured
+#
+# build the errbit image
+# $ fig build
+#
+# bootstrap errbit
+# $ fig run app bundle exec rake errbit:bootstrap
+#
+# run mongo, errbit, and nginx processes
+# $ fig up -d
+
+web:
+  image: nginx:1.7
+  ports:
+    - "80:80"
+  links:
+    - app
+  volumes:
+    - ./files/nginx.conf:/etc/nginx/conf.d/default.conf:ro
+  volumes_from:
+    - app
+
+app:
+  build: .
+  environment:
+    RAILS_ENV: production
+    ERRBIT_HOST: boot2docker.me
+    ERRBIT_PORT: 80
+    ERRBIT_PROTOCOL: http
+    MONGO_URL: mongodb://db/errbit
+    SECRET_KEY_BASE: foobar
+    SERVE_STATIC_ASSETS: false
+  ports:
+    - "3000:3000"
+  links:
+    - db
+  volumes:
+    - /app/public
+
+db:
+  image: mongo:3.0
+  volumes_from:
+    - data
+
+data:
+  image: busybox:latest
+  volumes:
+    - /data/db
