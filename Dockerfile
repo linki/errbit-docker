@@ -28,9 +28,6 @@ RUN apt-get install -y ruby2.1 ruby2.1-dev
 # install our beloved bundler
 RUN gem install bundler
 
-# install foreman to run our app server at the end
-RUN gem install foreman
-
 # clone errbit's default branch
 RUN git clone --depth 1 https://github.com/errbit/errbit.git /app
 
@@ -57,4 +54,4 @@ RUN bundle exec rake assets:precompile
 EXPOSE 3000
 
 # launch the rails server unless another command is given
-CMD PORT=3000 foreman start web
+CMD bundle exec rails s -p 3000 -b 0.0.0.0
