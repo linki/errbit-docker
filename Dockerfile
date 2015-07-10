@@ -1,4 +1,4 @@
-FROM ubuntu:14.04
+FROM ubuntu:15.04
 MAINTAINER Linki <linki+docker.com@posteo.de>
 
 # update the package list
@@ -12,15 +12,6 @@ RUN apt-get -y install nodejs
 
 # install git in order to checkout the project and gems defined by git urls
 RUN apt-get -y install git-core
-
-# install ruby 2.1
-#
-# the following installs ruby 2.1 via the apt package manager. unfortunately,
-# the default packages still only contain ruby 1.9, so we use brightbox's one.
-#
-RUN apt-get install -y software-properties-common python-software-properties
-RUN apt-add-repository -y ppa:brightbox/ruby-ng
-RUN apt-get update
 
 # install ruby 2.1 with development extensions
 RUN apt-get install -y ruby2.1 ruby2.1-dev
