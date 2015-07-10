@@ -10,13 +10,11 @@
 # $ fig up -d
 
 web:
-  image: nginx:1.7
+  image: linki/nginx-rails-proxy:1.7
   ports:
     - "80:80"
   links:
     - app
-  volumes:
-    - ./files/nginx.conf:/etc/nginx/conf.d/default.conf:ro
   volumes_from:
     - app
 
