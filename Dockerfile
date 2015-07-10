@@ -7,6 +7,12 @@ RUN apt-get update
 # install build-essential because we need to compile some native extensions
 RUN apt-get install -y build-essential
 
+# install zlib development headers for nokogiri to build
+#
+# http://www.nokogiri.org/tutorials/installing_nokogiri.html
+#
+RUN apt-get install -y zlib1g-dev
+
 # we need a javascript runtime
 RUN apt-get -y install nodejs
 
