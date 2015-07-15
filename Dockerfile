@@ -25,8 +25,8 @@ RUN apt-get install -y ruby2.1 ruby2.1-dev
 # install our beloved bundler
 RUN gem install bundler
 
-# clone errbit's default branch
-RUN git clone --depth 1 https://github.com/errbit/errbit.git /app
+# clone errbit's v0.4.0 tag
+RUN git clone --branch v0.4.0 --depth 1 https://github.com/errbit/errbit.git /app
 
 # add some gems specific to this image build
 COPY ./files/UserGemfile /app/UserGemfile
