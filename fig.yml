@@ -28,6 +28,7 @@ app:
     MONGO_URL: mongodb://db/errbit
     SECRET_KEY_BASE: foobar
     SERVE_STATIC_ASSETS: false
+    HEROKU: true
   ports:
     - "3000:3000"
   links:
