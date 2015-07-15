@@ -51,4 +51,4 @@ RUN bundle exec rake assets:precompile
 EXPOSE 3000
 
 # launch the rails server unless another command is given
-CMD bundle exec rails s -p 3000 -b 0.0.0.0
+CMD bundle exec rails s thin -p 3000 -b 0.0.0.0
